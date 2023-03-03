@@ -18,6 +18,25 @@ const randomFunc = {
   symbol: getRandomSymbol,
 };
 
+// generate event listener elements
+
+generateEl.addEventListener("click", () => {
+  //this gives a number as a string adding the + converts it to a number
+  const length = +lengthEl.value;
+  //checking whether the others are checked or not
+  const hasLower = lowercaseEl.checked;
+  const hasUpper = uppercaseEl.checked;
+  const hasNumber = numbersEl.checked;
+  const hasSymbol = symbolsEl.checked;
+
+  resultEl.innerText = generatePassword(
+    hasLower,
+    hasUpper,
+    hasNumber,
+    hasSymbol,
+    length
+  );
+});
 //generator functions - http://www.net-comber.com/charset.html
 
 //lower case function generator
