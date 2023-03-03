@@ -37,6 +37,43 @@ generateEl.addEventListener("click", () => {
     length
   );
 });
+
+//generate password function
+
+function generatePassword(lower, upper, number, symbol, length) {
+  //1. initialize a password variable
+  //2. filter out unchecked types
+  //3. loop over the length, call a generator function for each type
+  //4. Add the final password to the password variable and return it
+
+  let generatedPassword = "";
+
+  const typesCount = lower + upper + number + symbol;
+
+  const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
+    (item) => Object.values(item)[0]
+  );
+
+  // console.log("typesArr: ", typesArr);
+
+  if (typesCount === 0) {
+    return "";
+  }
+
+  for (let i = 0; i < length; i += typesCount) {
+    typesArr.forEach((type) => {
+      const funcName = Object.keys(type)[0];
+
+      // console.log("funcName: ", funcName);
+
+      generatedPassword += randomFunc[funcName]();
+    });
+  }
+
+  const finalPassword = generatedPassword.slice(0, length);
+
+  return finalPassword;
+}
 //generator functions - http://www.net-comber.com/charset.html
 
 //lower case function generator
